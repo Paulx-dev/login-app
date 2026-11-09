@@ -1,0 +1,26 @@
+<div class="pagina">                                                                  <!-- Contenedor general de la página -->
+
+  <header class="cabecera">                                                           <!-- Cabecera (Toolbar) -->
+    <h1 class="empresa"><i class="bi bi-heart-pulse"></i> {{ empresa }}</h1>          <!-- Nombre de la empresa con ícono -->
+    <nav class="botones">                                                             <!-- Zona de botones, a la derecha -->
+      <button type="button" class="btn btn-outline-light" (click)="acercaDe()">Acerca de</button> <!-- Llama a acercaDe() -->
+
+      @if (auth.logueado) {                                                           <!-- Si hay sesión iniciada... -->
+        <a routerLink="/inicio" class="btn btn-outline-light">Inicio</a>              <!-- Botón para volver al inicio -->
+        <span class="usuario"><i class="bi bi-person-circle"></i> {{ auth.usuarioActual }}</span> <!-- Nombre del usuario logueado -->
+        <button type="button" class="btn btn-warning" (click)="cerrarSesion()">Cerrar Sesión</button> <!-- Cierra la sesión -->
+      } @else {                                                                       <!-- ...si NO hay sesión: -->
+        <a routerLink="/login" class="btn btn-warning">Iniciar Sesión</a>             <!-- Botón que lleva al login -->
+      }
+    </nav>
+  </header>
+
+  <main class="contenido">                                                            <!-- Zona central de la página -->
+    <router-outlet />                                                                 <!-- Aquí Angular dibuja la página según la URL -->
+  </main>
+
+  <footer class="pie">                                                                <!-- Pie de página -->
+    <p>© {{ anio }} {{ empresa }}. Todos los derechos reservados.</p>                 <!-- Copyright con año automático -->
+  </footer>
+
+</div>

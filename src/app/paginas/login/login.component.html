@@ -1,0 +1,24 @@
+<div class="contenedor-login">                                                  <!-- Contenedor que centra el login -->
+  <div class="card shadow-lg tarjeta">                                          <!-- Tarjeta de Bootstrap con sombra -->
+    <div class="card-body p-4">                                                 <!-- Cuerpo de la tarjeta con espacio interno -->
+      <h2 class="text-center titulo"><i class="bi bi-shield-lock"></i> Iniciar Sesión</h2> <!-- Título con ícono -->
+      <p class="text-center text-muted mb-4">Ingresa tus credenciales para continuar</p>   <!-- Subtítulo en gris -->
+
+      <form (ngSubmit)="aceptar()">                                             <!-- Al enviar el formulario ejecuta aceptar() -->
+        <div class="mb-3">                                                      <!-- Grupo: etiqueta + campo -->
+          <label for="usuario" class="form-label">Usuario</label>               <!-- Etiqueta del campo usuario -->
+          <input id="usuario" name="usuario" type="text" class="form-control"
+                 placeholder="Escribe tu usuario" [(ngModel)]="usuario" />      <!-- Textbox enlazado a la variable usuario -->
+        </div>
+
+        <div class="mb-4">                                                      <!-- Grupo de la clave -->
+          <label for="clave" class="form-label">Clave</label>                   <!-- Etiqueta del campo clave -->
+          <input id="clave" name="clave" type="password" class="form-control"
+                 placeholder="Escribe tu clave" [(ngModel)]="clave" />          <!-- Textbox de clave (oculta los caracteres) -->
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Aceptar</button>    <!-- Botón Aceptar que envía el formulario -->
+      </form>
+    </div>
+  </div>
+</div>

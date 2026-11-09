@@ -1,0 +1,18 @@
+.contenedor-login {
+  display: flex;                     /* Activa flexbox */
+  justify-content: center;           /* Centra horizontalmente */
+  align-items: center;               /* Centra verticalmente */
+  min-height: 70vh;                  /* Altura mínima para que quede en el centro de la pantalla */
+  padding: 24px;                     /* Espacio alrededor */
+}
+
+.tarjeta {
+  width: 100%;                       /* Ocupa todo el ancho disponible... */
+  max-width: 400px;                  /* ...pero nunca más de 400px */
+  border: none;                      /* Quita el borde de la tarjeta */
+  border-radius: 14px;               /* Esquinas redondeadas */
+}
+
+.titulo {
+  color: #0f766e;                    /* Título en el color de la marca */
+}

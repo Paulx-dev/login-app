@@ -1,0 +1,22 @@
+<div class="container py-4">                                                    <!-- Contenedor Bootstrap centrado con espacio arriba/abajo -->
+
+  <div class="p-4 mb-4 bienvenida rounded-3">                                   <!-- Banner de bienvenida -->
+    <h2 class="mb-1">¡Bienvenido, {{ auth.usuarioActual }}!</h2>                <!-- Saludo con el usuario logueado -->
+    <p class="mb-0">Sistema de gestión de salud dental. Selecciona un módulo para comenzar.</p> <!-- Descripción -->
+  </div>
+
+  <div class="row g-4">                                                         <!-- Fila de Bootstrap con separación entre tarjetas -->
+    @for (m of modulos; track m.ruta) {                                         <!-- Repite el bloque por cada módulo de la lista -->
+      <div class="col-12 col-md-6 col-lg-4">                                    <!-- 1 columna en móvil, 2 en tablet, 3 en PC -->
+        <div class="card h-100 shadow-sm tarjeta-modulo">                       <!-- Tarjeta del módulo -->
+          <div class="card-body text-center">                                   <!-- Cuerpo de la tarjeta -->
+            <i class="bi {{ m.icono }} icono"></i>                              <!-- Ícono del módulo -->
+            <h5 class="card-title mt-2">{{ m.titulo }}</h5>                     <!-- Título del módulo -->
+            <p class="card-text text-muted">{{ m.descripcion }}</p>             <!-- Descripción del módulo -->
+            <a [routerLink]="m.ruta" class="btn btn-success">Ingresar</a>       <!-- Botón que lleva a la ruta del módulo -->
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

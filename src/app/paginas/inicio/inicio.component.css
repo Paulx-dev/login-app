@@ -1,0 +1,19 @@
+.bienvenida {
+  background: linear-gradient(90deg, #0f766e, #14b8a6); /* Fondo con degradado verde */
+  color: #ffffff;                                       /* Texto blanco */
+}
+
+.icono {
+  font-size: 2.8rem;                                    /* Ícono grande */
+  color: #0f766e;                                       /* Color de la marca */
+}
+
+.tarjeta-modulo {
+  border: none;                                         /* Sin borde */
+  border-radius: 12px;                                  /* Esquinas redondeadas */
+  transition: transform 0.2s;                           /* Animación suave al pasar el mouse */
+}
+
+.tarjeta-modulo:hover {
+  transform: translateY(-4px);                          /* La tarjeta sube un poco al pasar el mouse */
+}

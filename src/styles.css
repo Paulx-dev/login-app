@@ -1,0 +1,7 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';       /* Carga todos los estilos de Bootstrap */
+@import 'bootstrap-icons/font/bootstrap-icons.css';   /* Carga los íconos de Bootstrap (bi-...) */
+
+body {
+  margin: 0;                       /* Quita el margen blanco que trae el navegador */
+  background: #f1f5f9;             /* Color de fondo gris muy claro para toda la app */
+}

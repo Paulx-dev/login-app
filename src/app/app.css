@@ -1,0 +1,46 @@
+.pagina {
+  min-height: 100vh;                 /* La página ocupa como mínimo toda la altura de la pantalla */
+  display: flex;                     /* Activa flexbox para ordenar header, main y footer */
+  flex-direction: column;            /* Los coloca uno debajo del otro */
+}
+
+.cabecera {
+  display: flex;                     /* Pone nombre y botones en la misma fila */
+  justify-content: space-between;    /* Nombre a la izquierda, botones a la derecha */
+  align-items: center;               /* Centra verticalmente el contenido */
+  padding: 14px 32px;                /* Espacio interno de la cabecera */
+  background: #0f766e;               /* Verde azulado (color típico de salud) */
+  color: #ffffff;                    /* Texto blanco */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); /* Sombra suave debajo */
+}
+
+.empresa {
+  margin: 0;                         /* Quita márgenes del título */
+  font-size: 1.5rem;                 /* Tamaño de letra del nombre */
+}
+
+.botones {
+  display: flex;                     /* Alinea los botones en fila */
+  align-items: center;               /* Los centra verticalmente */
+  gap: 12px;                         /* Separación entre botones */
+}
+
+.usuario {
+  font-weight: 600;                  /* Nombre del usuario en negrita */
+}
+
+.contenido {
+  flex: 1;                           /* Ocupa todo el espacio libre: empuja el footer hacia abajo */
+}
+
+.pie {
+  padding: 16px;                     /* Espacio interno del pie */
+  text-align: center;                /* Texto centrado */
+  background: #0f766e;               /* Mismo color que la cabecera */
+  color: #d1fae5;                    /* Texto verde muy claro */
+  font-size: 0.9rem;                 /* Letra un poco más pequeña */
+}
+
+.pie p {
+  margin: 0;                         /* Quita el margen del párrafo */
+}

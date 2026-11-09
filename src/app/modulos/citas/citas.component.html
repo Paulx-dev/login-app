@@ -1,0 +1,17 @@
+<div class="container py-4">                                                    <!-- Contenedor centrado -->
+  <div class="d-flex justify-content-between align-items-center mb-3">          <!-- Fila: título a la izquierda, botón a la derecha -->
+    <h3><i class="bi bi-calendar-check"></i> Gestión de Citas</h3>              <!-- Título del módulo -->
+    <button class="btn btn-success">+ Nueva cita</button>                       <!-- Botón de ejemplo (aún sin función) -->
+  </div>
+
+  <table class="table table-striped table-hover bg-white shadow-sm">            <!-- Tabla Bootstrap con filas alternadas -->
+    <thead class="table-success">                                               <!-- Encabezado de la tabla -->
+      <tr><th>Fecha</th><th>Hora</th><th>Paciente</th><th>Motivo</th><th>Estado</th></tr> <!-- Títulos de columnas -->
+    </thead>
+    <tbody>                                                                     <!-- Cuerpo de la tabla -->
+      <tr><td>12/11/2026</td><td>09:00</td><td>María Pérez</td><td>Limpieza</td><td><span class="badge bg-success">Confirmada</span></td></tr> <!-- Fila de ejemplo; badge = etiqueta de color -->
+      <tr><td>12/11/2026</td><td>10:30</td><td>Juan Mora</td><td>Ortodoncia</td><td><span class="badge bg-warning text-dark">Pendiente</span></td></tr>
+      <tr><td>13/11/2026</td><td>08:00</td><td>Ana Vera</td><td>Extracción</td><td><span class="badge bg-danger">Cancelada</span></td></tr>
+    </tbody>
+  </table>
+</div>
