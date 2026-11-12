@@ -17,3 +17,8 @@
 .tarjeta-modulo:hover {
   transform: translateY(-4px);                          /* La tarjeta sube un poco al pasar el mouse */
 }
+
+.icono-dato {
+  font-size: 1.6rem;                                    /* Ícono de las tarjetas de resumen */
+  color: #0f766e;
+}

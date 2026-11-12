@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';                                              // Tipo para definir rutas
 import { authGuard } from './guardias/auth.guard';                                     // Guardia de seguridad
 import { LoginComponent } from './paginas/login/login.component';                      // Página de login
+import { RegistroComponent } from './paginas/registro/registro.component';           // Registro de pacientes
 import { InicioComponent } from './paginas/inicio/inicio.component';                   // Página principal
 import { CitasComponent } from './modulos/citas/citas.component';                      // Módulo 1
 import { HistoriaClinicaComponent } from './modulos/historia-clinica/historia-clinica.component'; // Módulo 2
@@ -11,6 +12,7 @@ import { InventarioComponent } from './modulos/inventario/inventario.component';
 export const routes: Routes = [                                                        // Lista de rutas de la app
   { path: '', redirectTo: 'login', pathMatch: 'full' },                                // Si la URL está vacía, va al login
   { path: 'login', component: LoginComponent },                                        // /login muestra el login
+  { path: 'registro', component: RegistroComponent },                                   // /registro crea cuenta de paciente
   { path: 'inicio', component: InicioComponent, canActivate: [authGuard] },            // /inicio solo con sesión iniciada
   { path: 'citas', component: CitasComponent, canActivate: [authGuard] },              // /citas protegido
   { path: 'historia-clinica', component: HistoriaClinicaComponent, canActivate: [authGuard] }, // protegido

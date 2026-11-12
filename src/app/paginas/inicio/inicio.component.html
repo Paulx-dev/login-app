@@ -1,22 +1,48 @@
-<div class="container py-4">                                                    <!-- Contenedor Bootstrap centrado con espacio arriba/abajo -->
+@if (panel) {                                                                    <!-- Solo se dibuja si hay un rol con sesión -->
+<div class="container py-4">                                                    <!-- Contenedor Bootstrap centrado -->
 
-  <div class="p-4 mb-4 bienvenida rounded-3">                                   <!-- Banner de bienvenida -->
-    <h2 class="mb-1">¡Bienvenido, {{ auth.usuarioActual }}!</h2>                <!-- Saludo con el usuario logueado -->
-    <p class="mb-0">Sistema de gestión de salud dental. Selecciona un módulo para comenzar.</p> <!-- Descripción -->
+  <div class="p-4 mb-4 bienvenida rounded-3 d-flex justify-content-between align-items-center flex-wrap gap-2"> <!-- Banner -->
+    <div>
+      <h2 class="mb-1">{{ panel.titulo }}</h2>                                  <!-- Título distinto por rol -->
+      <p class="mb-0">Bienvenido, {{ auth.usuarioActual }} · {{ auth.etiquetaRol }}. {{ panel.subtitulo }}.</p>
+    </div>
+    @if (panel.accion) {                                                        <!-- Botón grande (solo el paciente lo tiene) -->
+      <a [routerLink]="panel.accion.ruta" class="btn btn-warning btn-lg">{{ panel.accion.texto }}</a>
+    }
   </div>
 
-  <div class="row g-4">                                                         <!-- Fila de Bootstrap con separación entre tarjetas -->
-    @for (m of modulos; track m.ruta) {                                         <!-- Repite el bloque por cada módulo de la lista -->
-      <div class="col-12 col-md-6 col-lg-4">                                    <!-- 1 columna en móvil, 2 en tablet, 3 en PC -->
-        <div class="card h-100 shadow-sm tarjeta-modulo">                       <!-- Tarjeta del módulo -->
-          <div class="card-body text-center">                                   <!-- Cuerpo de la tarjeta -->
-            <i class="bi {{ m.icono }} icono"></i>                              <!-- Ícono del módulo -->
-            <h5 class="card-title mt-2">{{ m.titulo }}</h5>                     <!-- Título del módulo -->
-            <p class="card-text text-muted">{{ m.descripcion }}</p>             <!-- Descripción del módulo -->
-            <a [routerLink]="m.ruta" class="btn btn-success">Ingresar</a>       <!-- Botón que lleva a la ruta del módulo -->
+  @for (a of panel.avisos; track a.texto) {                                     <!-- Alertas del rol -->
+    <div class="alert alert-{{ a.tipo }}" role="alert">{{ a.texto }}</div>
+  }
+
+  <div class="row g-3 mb-4">                                                    <!-- Tarjetas de resumen -->
+    @for (d of panel.datos; track d.etiqueta) {
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm tarjeta-modulo">
+          <div class="card-body">
+            <i class="bi {{ d.icono }} icono-dato"></i>
+            <p class="text-muted mb-1 mt-2">{{ d.etiqueta }}</p>
+            <h5 class="mb-0">{{ d.valor }}</h5>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <h4 class="mb-3">Mis módulos</h4>                                             <!-- Módulos permitidos para este rol -->
+  <div class="row g-4">
+    @for (m of modulos; track m.ruta) {
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm tarjeta-modulo">
+          <div class="card-body text-center">
+            <i class="bi {{ m.icono }} icono"></i>
+            <h5 class="card-title mt-2">{{ m.titulo }}</h5>
+            <p class="card-text text-muted">{{ m.descripcion }}</p>
+            <a [routerLink]="m.ruta" class="btn btn-success">Ingresar</a>
           </div>
         </div>
       </div>
     }
   </div>
 </div>
+}

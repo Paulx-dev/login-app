@@ -7,7 +7,7 @@
 
       @if (auth.logueado) {                                                           <!-- Si hay sesión iniciada... -->
         <a routerLink="/inicio" class="btn btn-outline-light">Inicio</a>              <!-- Botón para volver al inicio -->
-        <span class="usuario"><i class="bi bi-person-circle"></i> {{ auth.usuarioActual }}</span> <!-- Nombre del usuario logueado -->
+        <span class="usuario"><i class="bi bi-person-circle"></i> {{ auth.usuarioActual }}</span> <span class="badge bg-light text-dark">{{ auth.etiquetaRol }}</span> <!-- Nombre del usuario logueado -->
         <button type="button" class="btn btn-warning" (click)="cerrarSesion()">Cerrar Sesión</button> <!-- Cierra la sesión -->
       } @else {                                                                       <!-- ...si NO hay sesión: -->
         <a routerLink="/login" class="btn btn-warning">Iniciar Sesión</a>             <!-- Botón que lleva al login -->

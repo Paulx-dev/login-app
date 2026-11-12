@@ -1,9 +1,17 @@
 import { inject } from '@angular/core';                          // Permite pedir servicios dentro de una función
 import { CanActivateFn, Router } from '@angular/router';         // Tipo de guardia y el Router para redirigir
-import { AuthService } from '../servicios/auth.service';         // Nuestro servicio con el estado de sesión
+import { AuthService } from '../servicios/auth.service';         // Servicio con el estado de sesión y el rol
 
-export const authGuard: CanActivateFn = () => {                  // Función que decide si se puede entrar a una ruta
+export const authGuard: CanActivateFn = (route) => {             // "route" trae la ruta a la que se quiere entrar
   const auth = inject(AuthService);                              // Obtiene el servicio de autenticación
   const router = inject(Router);                                 // Obtiene el router para poder redirigir
-  return auth.logueado ? true : router.createUrlTree(['/login']); // Si hay sesión deja pasar; si no, manda al login
+
+  if (!auth.logueado) {                                          // Sin sesión: al login
+    return router.createUrlTree(['/login']);
+  }
+
+  const ruta = '/' + (route.routeConfig?.path ?? '');            // Ej.: 'citas' pasa a '/citas'
+  return auth.puedeAcceder(ruta)                                 // ¿Su rol puede entrar a este módulo?
+    ? true                                                       // Sí: deja pasar
+    : router.createUrlTree(['/inicio']);                         // No: lo devuelve a su inicio
 };
