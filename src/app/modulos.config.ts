@@ -1,7 +1,7 @@
-// Tipo con los 5 roles del sistema
+//Aqui se crean los roles
 export type Rol = 'paciente' | 'odontologo' | 'recepcionista' | 'inventario' | 'administrador';
 
-// Nombre legible de cada rol (se muestra en la cabecera)
+// Nombre legible de cada rol para mostrarlos en la cabecera
 export const ETIQUETA_ROL: Record<Rol, string> = {
   paciente: 'Paciente',
   odontologo: 'Odontólogo',
