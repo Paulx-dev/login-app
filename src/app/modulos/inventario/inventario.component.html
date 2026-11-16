@@ -1,17 +1,55 @@
-<div class="container py-4">                                                    <!-- Contenedor centrado -->
-  <h3 class="mb-3"><i class="bi bi-receipt"></i> Facturación y Cobros</h3>      <!-- Título del módulo -->
-
-  <div class="row g-3 mb-4">                                                    <!-- Fila de tarjetas resumen -->
-    <div class="col-md-4"><div class="card text-bg-success shadow-sm"><div class="card-body"><h6>Cobrado hoy</h6><h3>$250.00</h3></div></div></div> <!-- Resumen 1 -->
-    <div class="col-md-4"><div class="card text-bg-warning shadow-sm"><div class="card-body"><h6>Por cobrar</h6><h3>$180.00</h3></div></div></div> <!-- Resumen 2 -->
-    <div class="col-md-4"><div class="card text-bg-secondary shadow-sm"><div class="card-body"><h6>Facturas emitidas</h6><h3>12</h3></div></div></div> <!-- Resumen 3 -->
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3><i class="bi bi-box-seam"></i> Inventario de Insumos</h3>
+    @if (puedeEditar) {
+      <button mat-flat-button (click)="nuevo()">+ Nuevo insumo</button>
+    }
   </div>
 
-  <table class="table table-striped bg-white shadow-sm">                        <!-- Tabla de facturas -->
-    <thead class="table-success"><tr><th>N° Factura</th><th>Paciente</th><th>Total</th><th>Estado</th></tr></thead> <!-- Encabezados -->
-    <tbody>
-      <tr><td>001-0001</td><td>María Pérez</td><td>$195.00</td><td><span class="badge bg-success">Pagada</span></td></tr> <!-- Fila de ejemplo -->
-      <tr><td>001-0002</td><td>Juan Mora</td><td>$80.00</td><td><span class="badge bg-warning text-dark">Pendiente</span></td></tr>
-    </tbody>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Filtrar</mat-label>
+    <input matInput #buscar (input)="filtrar(buscar.value)" placeholder="Código, nombre, categoría, proveedor...">
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="shadow-sm">
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef>Código</th>
+      <td mat-cell *matCellDef="let i">{{ i.codigo }}</td>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let i">{{ i.nombre }}</td>
+    </ng-container>
+    <ng-container matColumnDef="categoria">
+      <th mat-header-cell *matHeaderCellDef>Categoría</th>
+      <td mat-cell *matCellDef="let i">{{ i.categoria }}</td>
+    </ng-container>
+    <ng-container matColumnDef="stock">
+      <th mat-header-cell *matHeaderCellDef>Stock</th>
+      <td mat-cell *matCellDef="let i">{{ i.stock }}</td>
+    </ng-container>
+    <ng-container matColumnDef="proveedor">
+      <th mat-header-cell *matHeaderCellDef>Proveedor</th>
+      <td mat-cell *matCellDef="let i">{{ i.proveedor }}</td>
+    </ng-container>
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef>Precio</th>
+      <td mat-cell *matCellDef="let i">{{ i.precio | currency }}</td>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let i">
+        @if (puedeEditar) {
+          <button mat-button (click)="modificar(i)">Modificar</button>
+          <button mat-button (click)="eliminar(i)">Eliminar</button>
+        }
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let fila; columns: columnas"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="p-3" [attr.colspan]="columnas.length">No hay datos que coincidan con el filtro.</td>
+    </tr>
   </table>
 </div>
