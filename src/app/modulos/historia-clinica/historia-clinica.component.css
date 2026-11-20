@@ -1,0 +1,50 @@
+/* Odontograma */
+.odontograma {
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.fila {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  margin-bottom: 14px;
+  min-width: max-content;
+}
+
+.diente {
+  width: 38px;
+  height: 48px;
+  border: 2px solid #475569;
+  border-radius: 8px 8px 16px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.diente:hover { border-color: #198754; transform: translateY(-2px); }
+.diente.solo-lectura { cursor: default; }
+.diente.solo-lectura:hover { border-color: #475569; transform: none; }
+
+/* Leyenda de estados */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  font-size: 13px;
+  background: #fff;
+}
+
+.chip-click { cursor: pointer; }
+.chip.elegido { border-color: #198754; box-shadow: 0 0 0 2px #19875455; font-weight: 600; }
+
+.muestra {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #64748b;
+}
