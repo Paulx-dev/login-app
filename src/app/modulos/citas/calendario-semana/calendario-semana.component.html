@@ -1,0 +1,61 @@
+<div class="d-flex flex-wrap align-items-center gap-3 mt-3 mb-2">
+  @if (!esOdontologo) {
+    <mat-form-field appearance="outline" class="selector">
+      <mat-label>Odontólogo</mat-label>
+      <mat-select [(value)]="odontologoId" (selectionChange)="construir()">
+        @for (o of odontologos; track o.id) {
+          <mat-option [value]="o.id">{{ o.nombre }} · {{ o.especialidad }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+
+  <div class="d-flex align-items-center gap-2 ms-auto">
+    <button mat-stroked-button (click)="cambiarSemana(-1)">&laquo; Anterior</button>
+    <button mat-stroked-button (click)="irAHoy()">Hoy</button>
+    <button mat-stroked-button (click)="cambiarSemana(1)">Siguiente &raquo;</button>
+  </div>
+</div>
+
+@if (dias.length) {
+  <p class="text-muted mb-2">
+    Semana del {{ dias[0] | date: 'dd/MM/yyyy' }} al {{ dias[4] | date: 'dd/MM/yyyy' }}
+    @if (puedeSolicitar) { · haz clic en un espacio <strong>libre</strong> para agendar una cita }
+  </p>
+}
+
+<div class="leyenda mb-2">
+  <span class="item libre">Libre</span>
+  <span class="item cita-pendiente">Pendiente</span>
+  <span class="item cita-confirmada">Confirmada</span>
+  <span class="item cita-atendida">Atendida</span>
+  <span class="item bloqueado">Bloqueado</span>
+  <span class="item ocupado">Ocupado</span>
+</div>
+
+<div class="tabla-calendario shadow-sm">
+  <table class="calendario">
+    <thead>
+      <tr>
+        <th class="hora"></th>
+        @for (d of dias; track d.getTime(); let i = $index) {
+          <th>{{ nombresDias[i] }} {{ d | date: 'dd/MM' }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (f of filas; track f.hora.getTime()) {
+        <tr>
+          <th class="hora">{{ f.hora | date: 'HH:mm' }}</th>
+          @for (c of f.celdas; track c.inicio.getTime()) {
+            <td class="celda" [class]="'celda ' + c.clase" [class.clic]="c.seleccionable"
+                [title]="c.titulo" (click)="elegirEspacio(c)">
+              <span class="texto">{{ c.texto }}</span>
+              @if (c.detalle) { <small class="detalle">{{ c.detalle }}</small> }
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

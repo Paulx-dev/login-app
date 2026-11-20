@@ -1,0 +1,3 @@
+.filtros mat-form-field {
+  width: 100%;                  /* Que los filtros ocupen todo el ancho de su columna */
+}

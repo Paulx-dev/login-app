@@ -1,0 +1,71 @@
+<p class="text-muted mt-3 mb-2">
+  Al confirmar una cita se programa un recordatorio por correo 24 horas antes. Aquí también puedes programar otros.
+  Por ahora no se envía nada real: "Marcar como enviado" solo registra el envío.
+</p>
+
+<div class="row g-2 align-items-center">
+  <div class="col-12 col-md-5">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Cita</mat-label>
+      <mat-select [(ngModel)]="citaId">
+        @for (c of citasFuturas; track c.id) {
+          <mat-option [value]="c.id">{{ c.inicio | date: 'dd/MM HH:mm' }} · {{ c.paciente }} · {{ c.odontologo }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-6 col-md-2">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Canal</mat-label>
+      <mat-select [(ngModel)]="canal">
+        @for (c of canales; track c) { <mat-option [value]="c">{{ c }}</mat-option> }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-6 col-md-3">
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Cuándo</mat-label>
+      <mat-select [(ngModel)]="horas">
+        @for (a of anticipaciones; track a.horas) { <mat-option [value]="a.horas">{{ a.texto }}</mat-option> }
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-12 col-md-2 mb-3">
+    <button mat-flat-button class="w-100" (click)="programar()">Programar</button>
+  </div>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="shadow-sm">
+  <ng-container matColumnDef="programada">
+    <th mat-header-cell *matHeaderCellDef>Programado para</th>
+    <td mat-cell *matCellDef="let f">{{ f.recordatorio.programada | date: 'dd/MM/yyyy HH:mm' }}</td>
+  </ng-container>
+  <ng-container matColumnDef="paciente">
+    <th mat-header-cell *matHeaderCellDef>Paciente</th>
+    <td mat-cell *matCellDef="let f">{{ f.cita.paciente }}</td>
+  </ng-container>
+  <ng-container matColumnDef="cita">
+    <th mat-header-cell *matHeaderCellDef>Cita</th>
+    <td mat-cell *matCellDef="let f">{{ f.cita.inicio | date: 'dd/MM/yyyy HH:mm' }} · {{ f.cita.odontologo }}</td>
+  </ng-container>
+  <ng-container matColumnDef="canal">
+    <th mat-header-cell *matHeaderCellDef>Canal</th>
+    <td mat-cell *matCellDef="let f">{{ f.recordatorio.canal }}</td>
+  </ng-container>
+  <ng-container matColumnDef="estado">
+    <th mat-header-cell *matHeaderCellDef>Estado</th>
+    <td mat-cell *matCellDef="let f"><span class="badge" [class]="claseEstado(f.estado)">{{ f.estado }}</span></td>
+  </ng-container>
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let f">
+      @if (!f.recordatorio.enviado) { <button mat-button (click)="enviar(f)">Marcar como enviado</button> }
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+  <tr mat-row *matRowDef="let fila; columns: columnas"></tr>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="p-3" [attr.colspan]="columnas.length">No hay recordatorios.</td>
+  </tr>
+</table>

@@ -1,0 +1,76 @@
+.selector {
+  min-width: 320px;                       /* Ancho del selector de odontólogo */
+}
+
+.tabla-calendario {
+  overflow-x: auto;                       /* En pantallas pequeñas se desplaza de lado */
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+table.calendario {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+table.calendario th,
+table.calendario td {
+  border: 1px solid #e2e8f0;
+  padding: 4px 6px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+table.calendario thead th {
+  background: #0f766e;                    /* Mismo verde de la cabecera de la app */
+  color: #ffffff;
+  position: sticky;
+  top: 0;
+}
+
+th.hora {
+  width: 64px;
+  background: #f1f5f9;
+  color: #475569;
+  font-weight: 600;
+}
+
+.celda {
+  height: 46px;
+  line-height: 1.1;
+}
+
+.celda .detalle {
+  display: block;
+  opacity: 0.85;
+}
+
+.celda.clic {
+  cursor: pointer;                        /* Solo los espacios libres se pueden pulsar */
+}
+
+.celda.clic:hover {
+  filter: brightness(0.93);
+  outline: 2px solid #0f766e;
+  outline-offset: -2px;
+}
+
+/* Colores por estado (se usan también en la leyenda) */
+.libre            { background: #dcfce7; color: #166534; }
+.pasado           { background: #f8fafc; color: #94a3b8; }
+.ocupado          { background: #e2e8f0; color: #475569; }
+.bloqueado        { background: #fecaca; color: #991b1b; }
+.cita-pendiente   { background: #fef08a; color: #713f12; }
+.cita-confirmada  { background: #86efac; color: #14532d; }
+.cita-atendida    { background: #bfdbfe; color: #1e3a8a; }
+.cita-noasistio   { background: #e5e7eb; color: #4b5563; }
+
+.leyenda .item {
+  display: inline-block;
+  padding: 2px 10px;
+  margin-right: 6px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
